@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            PlayMusicService.currentIndex=intent.getIntExtra("index",-1);
+            currentIndex=intent.getIntExtra("index",-1);
             int mpstatus = intent.getIntExtra("status",-1);
             if(fragments ==null)
             {

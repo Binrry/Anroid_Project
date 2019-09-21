@@ -42,6 +42,7 @@ public class MusicListFragment extends Fragment {
                 i.putExtra("CMD", SMPConstants.CMP_PLAYATPOSITION);
                 i.putExtra("index", PlayMusicService.currentIndex);
                 MpStatus=SMPConstants.STATUS_PLAY;
+                i.putExtra("status",MpStatus);
                 getActivity().startService(i);
             }
         });

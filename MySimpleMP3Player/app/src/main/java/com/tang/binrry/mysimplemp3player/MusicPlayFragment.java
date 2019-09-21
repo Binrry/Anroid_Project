@@ -133,7 +133,7 @@ public class MusicPlayFragment extends Fragment implements View.OnClickListener 
         getActivity().unregisterReceiver(prgReceiver);
     }
 
-    private void iniView(int music_index)
+    private  void iniView(int music_index)
    {
        if (music_index>-1)
        {
@@ -215,6 +215,7 @@ public class MusicPlayFragment extends Fragment implements View.OnClickListener 
         tvLrc.setText("");
         btnPlay.setImageResource(R.drawable.pause_selector);
         iniView(MainActivity.currentIndex);
+        MainActivity.musicListAdapter.refreshSelectPosition();
     }
     private void nextMusic()
     {
@@ -232,6 +233,7 @@ public class MusicPlayFragment extends Fragment implements View.OnClickListener 
         MpStatus=SMPConstants.STATUS_PLAY;
         btnPlay.setImageResource(R.drawable.pause_selector);
         iniView(MainActivity.currentIndex);
+        MainActivity.musicListAdapter.refreshSelectPosition();
     }
 
 
@@ -268,10 +270,10 @@ public class MusicPlayFragment extends Fragment implements View.OnClickListener 
         MainActivity.musicListAdapter.refreshSelectPosition();
 
     }
-    public void setMPStatus(int mpstatus) {
+    public  void setMPStatus(int mpstatus) {
         iniView(MainActivity.currentIndex);
         MpStatus=mpstatus;
-        if(mpstatus==SMPConstants.STATUS_PLAY)
+        if(MpStatus==SMPConstants.STATUS_PLAY)
         {
             btnPlay.setImageResource(R.drawable.pause_selector);
         }
@@ -299,6 +301,7 @@ public class MusicPlayFragment extends Fragment implements View.OnClickListener 
             tvPlayTime.setText(Util.toTime(time));
             MusicBean bean=PlayMusicService.musicData.get(PlayMusicService.currentIndex);
             tvMusicName.setText(bean.getMusicName());
+            tvDuration.setText(Util.toTime(bean.getMusicDuration()));
             int cmd=intent.getIntExtra("CMD",-1);
            // btnPlay.setImageResource(R.drawable.pause_selector);
 
